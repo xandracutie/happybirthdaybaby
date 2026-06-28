@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For my baby</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cd"></div><div id="cr"></div>
+<canvas id="grain"></canvas>
+
+<!-- ═══════════ LOCK ═══════════ -->
+<div id="lock">
+  <div class="lock-box">
+    <svg class="lock-ring" viewBox="0 0 60 60" fill="none">
+      <circle cx="30" cy="30" r="29" stroke="currentColor" stroke-width=".5"/>
+      <path d="M30 8L30 52M8 30L52 30" stroke="currentColor" stroke-width=".5"/>
+      <circle cx="30" cy="30" r="5" stroke="currentColor" stroke-width=".5" fill="none"/>
+      <circle cx="30" cy="30" r="14" stroke="currentColor" stroke-width=".5" stroke-dasharray="3 4"/>
+    </svg>
+    <p class="l-eye">Private · For my baby only</p>
+    <h1 class="l-head">This page is<br>locked for you.</h1>
+    <p class="l-hint">Enter the date you know by heart</p>
+    <div class="l-row">
+      <div class="l-grp">
+        <input class="l-inp" id="fm" type="text" maxlength="7" placeholder="" autocomplete="off" spellcheck="false">
+        <label class="l-lbl">Month</label>
+      </div>
+      <span class="l-slash">/</span>
+      <div class="l-grp">
+        <input class="l-inp n" id="fd" type="number" min="1" max="31" placeholder="" autocomplete="off">
+        <label class="l-lbl">Day</label>
+      </div>
+    </div>
+    <button class="l-btn" onclick="tryUnlock()"><span>Open</span><span>→</span></button>
+    <p class="l-err" id="lerr">Baby mali, Try again.</p>
+  </div>
+</div>
+
+<!-- ═══════════ SITE ═══════════ -->
+<div id="site">
+
+  <!-- HERO -->
+  <section class="hero pad">
+    <div class="hero-watermark" aria-hidden="true">CLAIDON</div>
+    <div class="hero-inner">
+      <div class="hero-l">
+        <p class="h-eye" data-r>October · 13 · A very special day</p>
+        <h1 class="h-ttl" data-r="1">
+          <span>Happy</span>
+          <span class="it">Birthday,</span>
+          <span class="ac">Ace Claidon!</span>
+        </h1>
+        <p class="h-sub" data-r="2">Every single year, you get more of yourself. And the world is softer, warmer, and better for it.</p>
+
+        <!-- MUSIC PLAY BUTTON -->
+        <div class="play-wrap" data-r="3">
+          <button class="play-big" id="play-big" onclick="togglePlay()" title="Play birthday song">
+            <span class="play-ico" id="play-ico">▶</span>
+          </button>
+          <div>
+            <div style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:.2rem" id="song-name">Play the song</div>
+            <div class="play-label" id="play-label">My dedicated song only  for you ♪</div>
+          </div>
+          <div class="vinyl" id="vinyl">
+            <div class="vinyl-grooves"></div>
+          </div>
+          <div class="wave-mini" id="wave-mini">
+            <span class="wm-b"></span><span class="wm-b"></span>
+            <span class="wm-b"></span><span class="wm-b"></span>
+            <span class="wm-b"></span><span class="wm-b"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-r" data-r="2">
+        <div class="hero-photo" id="hpw">
+          <img id="himg" src="" alt="A photo of Ace">
+          <div class="hp-ph" id="hph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+            <span>Photo coming soon</span>
+          </div>
+          <div class="hp-frame"></div>
+        </div>
+        <p class="hero-quote">"You are one of the rare people who make every room feel like home."</p>
+      </div>
+    </div>
+    <div class="scroll-hint" id="shi"><span>Scroll</span><div class="sh-line"></div></div>
+  </section>
+
+  <!-- STICKY MUSIC BAR -->
+  <div class="mbar" id="mbar">
+    <div class="mbar-left">
+      <div class="mbar-waves" id="mbar-waves">
+        <span class="mbw"></span><span class="mbw"></span><span class="mbw"></span>
+        <span class="mbw"></span><span class="mbw"></span><span class="mbw"></span><span class="mbw"></span>
+      </div>
+    </div>
+    <div class="mbar-track">
+      <span class="mbar-name" id="mbar-name">My dedicated Song Just 4 U</span>
+      <span class="mbar-sub">Press play to listen</span>
+    </div>
+    <div class="mbar-prog"><div class="prog-bg"><div class="prog-fill" id="pfill"></div></div></div>
+    <button class="mbar-btn" id="mbar-btn" onclick="togglePlay()">▶ Play</button>
+  </div>
+
+  <!-- FEATURED — 3 cards -->
+  <section class="feat-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r>
+        <div><p class="s-eye">Chapter I</p><h2 class="s-ttl">Featured Memories</h2></div>
+        <p class="s-desc">Hover to read. Click to see it full size.</p>
+      </div>
+    </div>
+    <div class="pad"><div class="feat-grid" id="fg"></div></div>
+  </section>
+
+  <!-- INTERLUDE -->
+  <div class="ilu" data-r>
+    <p class="ilu-q">"To love someone is to see a miracle invisible to others."</p>
+    <span class="ilu-by">— François Mauriac</span>
+  </div>
+
+  <!-- LIBRARY — 12 photos masonry -->
+  <section class="lib-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r>
+        <div><p class="s-eye">Chapter II</p><h2 class="s-ttl">Library of You</h2></div>
+        <p class="s-desc">Every moment, collected here forever.</p>
+      </div>
+    </div>
+    <div class="pad"><div class="lib-grid" id="lg"></div></div>
+  </section>
+
+  <!-- INTERLUDE 2 -->
+  <div class="ilu" data-r>
+    <p class="ilu-q">"I have found the one whom my soul loves."</p>
+    <span class="ilu-by">— Song of Solomon 3:4</span>
+  </div>
+
+  <!-- STRIP — 8 photos horizontal drag -->
+  <section class="strip-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r>
+        <div><p class="s-eye">Chapter III</p><h2 class="s-ttl">Moments in Time</h2></div>
+        <p class="s-desc">Drag to explore ur timeline.</p>
+      </div>
+    </div>
+    <div class="pad"><div class="strip" id="strip"></div></div>
+  </section>
+
+  <!-- REASONS I LOVE YOU — flip cards -->
+  <section class="reasons-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r>
+        <div><p class="s-eye">Chapter IV</p><h2 class="s-ttl">Reasons I Love You</h2></div>
+        <p class="s-desc">Tap a card to flip it over.</p>
+      </div>
+      <div class="reasons-grid" id="reasons-grid"></div>
+    </div>
+  </section>
+
+  <!-- LETTERS -->
+  <section class="letters-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r>
+        <div><p class="s-eye">For You</p><h2 class="s-ttl">Letters I Wrote You</h2></div>
+        <p class="s-desc">Open each one when you're ready.</p>
+      </div>
+      <div class="letters-grid" id="letters-grid"></div>
+    </div>
+  </section>
+
+  <!-- MAKE A WISH — candles -->
+  <section class="wish-sec">
+    <div class="pad">
+      <div class="sec-hd" data-r style="justify-content:center;text-align:center;border-bottom:none;padding-bottom:0;margin-bottom:2.4rem">
+        <div style="margin:0 auto"><p class="s-eye">Make A Wish</p><h2 class="s-ttl">Blow Out The Candles</h2></div>
+      </div>
+      <p class="wish-hint">Click each candle until every flame is out.</p>
+      <div class="candles" id="candles"></div>
+      <p class="wish-progress" id="wish-progress"></p>
+    </div>
+  </section>
+
+  <!-- THE BIG LETTER -->
+  <section class="big-letter-sec">
+    <span class="bl-mark" aria-hidden="true">"</span>
+    <div class="bl-wrap">
+      <p class="bl-eye" id="bl-eye"></p>
+      <h2 class="bl-ttl" id="bl-ttl"></h2>
+      <div class="bl-body" id="bl-body"></div>
+      <p class="bl-sig" id="bl-sig"></p>
+    </div>
+  </section>
+
+  <!-- OUTRO -->
+  <section class="outro">
+    <div class="outro-bg" aria-hidden="true">13</div>
+    <div class="outro-grid">
+      <div class="outro-l" data-r>
+        <p class="o-eye">One last thing</p>
+        <h2 class="o-ttl">Happy Birthday, Baby.</h2>
+        <div class="o-msg">
+          <p>On this October morning, I woke up thinking of you. Not just because it's your birthday — though that's more than enough reason — but because you cross my mind constantly, in the quiet moments between everything else.</p>
+          <p>You are someone who makes ordinary things feel sacred. A laugh, a glance, a conversation with you — all of it feels like something worth saving.</p>
+          <p>This page is my attempt to hold some of that. The memories, the words, the music — all of it is yours. <em>All of it has always been yours.</em></p>
+          <p>Happy birthday. I hope this year gives you everything you quietly wish for.</p>
+        </div>
+        <div class="o-sig">— made for you, with love · October 13</div>
+      </div>
+      <div class="outro-r" data-r="1">
+        <div class="o-name">Ace</div>
+        <button class="celeb-btn" onclick="celebrate()"><span class="celeb-inner">✦ Release a celebration</span></button>
+      </div>
+    </div>
+    <div class="o-foot"><span>Happy Birthday, Ace · October 13</span><span>Made with love ♥</span></div>
+  </section>
+
+</div><!-- /site -->
+
+<!-- AUDIO — replace the src with your actual music file path -->
+<audio id="aud" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-x" onclick="closeLb()">✕</button>
+  <div class="lb-wrap" onclick="event.stopPropagation()">
+    <img id="lbimg" src="" alt="">
+    <p class="lb-cap" id="lbcap"></p>
+  </div>
+</div>
+
+<!-- LETTER MODAL -->
+<div class="letter-modal" id="lm" onclick="closeLm(event)">
+  <div class="lm-bg"></div>
+  <div class="lm-inner" id="lm-inner">
+    <button class="lm-close" onclick="closeLm()">✕</button>
+    <span class="lm-tag" id="lm-tag"></span>
+    <h2 class="lm-title" id="lm-title"></h2>
+    <div class="lm-body" id="lm-body"></div>
+    <div class="lm-sig" id="lm-sig"></div>
+  </div>
+</div>
+
+<!-- WISH OVERLAY -->
+<div class="wish-overlay" id="wish-overlay">
+  <div class="wish-bg" onclick="closeWish()"></div>
+  <div class="wish-msg">
+    <span class="wish-eye">Your wish has been made</span>
+    <p id="wish-text"></p>
+    <button class="wish-close" onclick="closeWish()">Close</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
